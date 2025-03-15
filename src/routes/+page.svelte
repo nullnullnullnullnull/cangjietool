@@ -155,6 +155,29 @@
   .prev {
     left: 0;
   }
+
+  .keyboard-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.1);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #666;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .keyboard-hint kbd {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 2px 6px;
+    margin: 0 2px;
+    font-family: monospace;
+  }
 </style>
 
 <svelte:head>
@@ -168,12 +191,15 @@
 <svelte:window
   on:click={() => { showSettings = false }}
   on:keydown={(evt) => {
-    if (evt.key === 'ArrowRight') {
-      currentVocab += 1;
-      currentVocab %= currentLevelList.length;
-    }
-    if (evt.key === 'ArrowLeft' && currentVocab > 0) {
-      currentVocab -= 1;
+    // 只有在按住 Shift 键时才切换词
+    if (evt.shiftKey) {
+      if (evt.key === 'ArrowRight') {
+        currentVocab += 1;
+        currentVocab %= currentLevelList.length;
+      }
+      if (evt.key === 'ArrowLeft' && currentVocab > 0) {
+        currentVocab -= 1;
+      }
     }
   }}
 />
@@ -243,3 +269,7 @@
     {/await}
   </div>
 </Card>
+
+<div class="keyboard-hint">
+  按 <kbd>Shift</kbd> + <kbd>←</kbd> / <kbd>→</kbd> 切換詞語
+</div> 

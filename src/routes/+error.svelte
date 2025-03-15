@@ -1,3 +1,10 @@
+<script>
+  import { page } from '$app/stores';
+</script>
+
+<h1>{$page.status}</h1>
+<p>{$page.error?.message}</p>
+
 <style>
   h1, p {
     margin: 0 auto;
@@ -18,12 +25,4 @@
       font-size: 4em;
     }
   }
-</style>
-
-<svelte:head>
-  <title>404</title>
-</svelte:head>
-
-<h1>404000</h1>
-
-<p>Page Not Found123</p>
+</style> 

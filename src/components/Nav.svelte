@@ -1,10 +1,8 @@
 <script>
   import About from './About.svelte';
-
-  export let segment;
+  import { page } from '$app/stores';
 
   let showAbout = false;
-
   const toggleAbout = () => { showAbout = !showAbout }
 </script>
 
@@ -51,8 +49,8 @@
     <img src="/apple-touch-icon.png" alt="logo" on:click|stopPropagation={toggleAbout}>
 
     <div class="links">
-      <a class:active={segment === '/'} href="/">倉頡練習</a>
-      <a class:active={segment === '/letters/'} href="/letters">中文字母練習</a>
+      <a class:active={$page.url.pathname === '/'} href="/">倉頡練習</a>
+      <a class:active={$page.url.pathname === '/letters'} href="/letters">中文字母練習</a>
     </div>
   </div>
 </nav>
