@@ -51,6 +51,7 @@
     <div class="links">
       <a class:active={$page.url.pathname === '/'} href="/">倉頡練習</a>
       <a class:active={$page.url.pathname === '/letters'} href="/letters">中文字母練習</a>
+      <a class:active={$page.url.pathname === '/lookup'} href="/lookup">拼寫查詢</a>
     </div>
   </div>
 </nav>

@@ -33,6 +33,17 @@
   // Show the settings dialog
   let showSettings = false;
 
+  // 添加显示模式选项
+  let displayMode = 'traditional'; // 'traditional', 'simplified', 'mixed'
+
+  // 根据显示模式获取要显示的文字
+  const getDisplayText = (item) => {
+    if (displayMode === 'traditional') return item.Traditional;
+    if (displayMode === 'simplified') return item.Simplified;
+    // mixed 模式随机选择繁体或简体
+    return Math.random() > 0.5 ? item.Traditional : item.Simplified;
+  };
+
   // Sets the shuffled list in the local variable
   const setLevelList = (list) => {
     currentVocab = 0;
@@ -178,6 +189,18 @@
     margin: 0 2px;
     font-family: monospace;
   }
+
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 </style>
 
 <svelte:head>
@@ -234,6 +257,42 @@
           <label for="order">隨機順序</label>
           <input id="order" type="checkbox" bind:checked={randomOrder} />
         </div>
+
+        <div class="option">
+          <label>顯示模式</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input 
+                type="radio" 
+                id="traditional" 
+                name="displayMode" 
+                value="traditional"
+                bind:group={displayMode}
+              >
+              <label for="traditional">繁體</label>
+            </div>
+            <div class="radio-option">
+              <input 
+                type="radio" 
+                id="simplified" 
+                name="displayMode" 
+                value="simplified"
+                bind:group={displayMode}
+              >
+              <label for="simplified">簡體</label>
+            </div>
+            <div class="radio-option">
+              <input 
+                type="radio" 
+                id="mixed" 
+                name="displayMode" 
+                value="mixed"
+                bind:group={displayMode}
+              >
+              <label for="mixed">混合</label>
+            </div>
+          </div>
+        </div>
       </div>
     {/if}
 
@@ -242,7 +301,7 @@
     {:then [chars, levelist]}
       {setCangjieChars(chars)}
       {#await Promise.resolve(setLevelList(levelist, randomOrder)) then list}
-        <h1>{list[currentVocab].Traditional}</h1>
+        <h1>{getDisplayText(list[currentVocab])}</h1>
         {#if showCj}
           <p class="cj-zh">
             {cjString(enString(list[currentVocab].Traditional))}
