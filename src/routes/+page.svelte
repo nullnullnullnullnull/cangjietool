@@ -201,6 +201,69 @@
     align-items: center;
     gap: 5px;
   }
+
+  .settings {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: #fff7f4;
+    padding: 15px 20px;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1;
+  }
+
+  .settings-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .option:last-child {
+    margin-bottom: 0;
+  }
+
+  .option label {
+    margin-right: 10px;
+    min-width: 70px;
+  }
+
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  select {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+
+  input[type="radio"] {
+    width: 16px;
+    height: 16px;
+  }
 </style>
 
 <svelte:head>
@@ -229,72 +292,68 @@
 
 <Card inputTextCallback={inputCallback} inputText={inputValue} color="#9c88ff">
   <div class="wrap">
-    <div class="settingsButton" on:click|stopPropagation={() => { showSettings = true }}>
-      <SettingsIcon />
-    </div>
-    {#if showSettings}
-      <div class="controls" on:click|stopPropagation>
-        <div class="option">
-          <label for="level">程度</label>
-          <select name="level" id="level" bind:value={currentLevel}>
-            {#each [...Array(10).keys()] as level}
-              <option value={level + 1}>{level + 1}</option>
-            {/each}
-          </select>
-        </div>
+    <div class="settings">
+      <div class="settings-title">設置</div>
+      <div class="option">
+        <label for="level">程度</label>
+        <select name="level" id="level" bind:value={currentLevel}>
+          {#each [...Array(10).keys()] as level}
+            <option value={level + 1}>{level + 1}</option>
+          {/each}
+        </select>
+      </div>
 
-        <div class="option">
-          <label for="en">英文字幕</label>
-          <input id="en" type="checkbox" bind:checked={showEn} />
-        </div>
+      <div class="option">
+        <label for="en">英文字幕</label>
+        <input id="en" type="checkbox" bind:checked={showEn} />
+      </div>
 
-        <div class="option">
-          <label for="cj">中文字幕</label>
-          <input id="cj" type="checkbox" bind:checked={showCj} />
-        </div>
+      <div class="option">
+        <label for="cj">中文字幕</label>
+        <input id="cj" type="checkbox" bind:checked={showCj} />
+      </div>
 
-        <div class="option">
-          <label for="order">隨機順序</label>
-          <input id="order" type="checkbox" bind:checked={randomOrder} />
-        </div>
+      <div class="option">
+        <label for="order">隨機順序</label>
+        <input id="order" type="checkbox" bind:checked={randomOrder} />
+      </div>
 
-        <div class="option">
-          <label>顯示模式</label>
-          <div class="radio-group">
-            <div class="radio-option">
-              <input 
-                type="radio" 
-                id="traditional" 
-                name="displayMode" 
-                value="traditional"
-                bind:group={displayMode}
-              >
-              <label for="traditional">繁體</label>
-            </div>
-            <div class="radio-option">
-              <input 
-                type="radio" 
-                id="simplified" 
-                name="displayMode" 
-                value="simplified"
-                bind:group={displayMode}
-              >
-              <label for="simplified">簡體</label>
-            </div>
-            <div class="radio-option">
-              <input 
-                type="radio" 
-                id="mixed" 
-                name="displayMode" 
-                value="mixed"
-                bind:group={displayMode}
-              >
-              <label for="mixed">混合</label>
-            </div>
+      <div class="option">
+        <label>顯示模式</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input 
+              type="radio" 
+              id="traditional" 
+              name="displayMode" 
+              value="traditional"
+              bind:group={displayMode}
+            >
+            <label for="traditional">繁體</label>
+          </div>
+          <div class="radio-option">
+            <input 
+              type="radio" 
+              id="simplified" 
+              name="displayMode" 
+              value="simplified"
+              bind:group={displayMode}
+            >
+            <label for="simplified">簡體</label>
+          </div>
+          <div class="radio-option">
+            <input 
+              type="radio" 
+              id="mixed" 
+              name="displayMode" 
+              value="mixed"
+              bind:group={displayMode}
+            >
+            <label for="mixed">混合</label>
           </div>
         </div>
       </div>
-    {/if}
+    </div>
 
     {#await Promise.all([cangjieCharsPromise, currentLevelListPromise])}
       <h1>...</h1>
