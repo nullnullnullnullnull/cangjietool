@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="theme-color" content="#333333">
+
+	<link rel="stylesheet" href="/global.css">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+
+	<meta http-equiv="content-security-policy" content="">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.1fe9c440.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.e2ae98d0.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.0bdb6e64.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.1679aaba.js">
+</head>
+<body>
+	
+			<script>
+				{
+					__sveltekit_1y7fvln = {
+						env: {},
+						base: new URL(".", location).pathname.slice(0, -1),
+						element: document.currentScript.parentElement
+					};
+
+					Promise.all([
+						import("./_app/immutable/entry/start.1fe9c440.js"),
+						import("./_app/immutable/entry/app.1679aaba.js")
+					]).then(([kit, app]) => {
+						kit.start(app, __sveltekit_1y7fvln.element);
+					});
+
+					if ('serviceWorker' in navigator) {
+						addEventListener('load', function () {
+							navigator.serviceWorker.register('./service-worker.js');
+						});
+					}
+				}
+			</script>
+		
+
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/service-worker.js')
+				.catch((error) => {
+					console.error('Service worker registration failed:', error);
+				});
+		}
+	</script>
+</body>
+</html>

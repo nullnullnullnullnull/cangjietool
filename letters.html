@@ -13,31 +13,31 @@
 	<link rel="manifest" href="/site.webmanifest">
 
 	<meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="/_app/immutable/entry/start.3e10bee7.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/index.e2ae98d0.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/singletons.5e811307.js">
-		<link rel="modulepreload" href="/_app/immutable/entry/app.b3208062.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.1fe9c440.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.e2ae98d0.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.0bdb6e64.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.1679aaba.js">
 </head>
 <body>
 	
 			<script>
 				{
-					__sveltekit_ih6ikf = {
+					__sveltekit_1y7fvln = {
 						env: {},
-						base: "",
+						base: new URL(".", location).pathname.slice(0, -1),
 						element: document.currentScript.parentElement
 					};
 
 					Promise.all([
-						import("/_app/immutable/entry/start.3e10bee7.js"),
-						import("/_app/immutable/entry/app.b3208062.js")
+						import("./_app/immutable/entry/start.1fe9c440.js"),
+						import("./_app/immutable/entry/app.1679aaba.js")
 					]).then(([kit, app]) => {
-						kit.start(app, __sveltekit_ih6ikf.element);
+						kit.start(app, __sveltekit_1y7fvln.element);
 					});
 
 					if ('serviceWorker' in navigator) {
 						addEventListener('load', function () {
-							navigator.serviceWorker.register('/service-worker.js');
+							navigator.serviceWorker.register('./service-worker.js');
 						});
 					}
 				}
