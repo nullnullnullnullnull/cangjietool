@@ -32,8 +32,10 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build
-          clean: true
-          clean-exclude: |
-            .nojekyll
-            CNAME
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The branch the action should deploy to.
+          BRANCH: gh-pages
+          # The folder the action should deploy.
+          FOLDER: build
+          # Automatically remove deleted files from the deploy branch
+          CLEAN: true
