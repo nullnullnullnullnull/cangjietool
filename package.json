@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "build": "vite build",
-    "postbuild": "mv build/404/index.html build/404.html",
     "preview": "vite preview",
     "lint": "eslint ."
   },
